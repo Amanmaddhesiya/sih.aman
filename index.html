@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Airfare Price Index (APIx) Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; }
+        .header { background: #1e3a8a; color: white; padding: 20px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
+        .cards-container { display: flex; gap: 20px; margin-top: 20px; }
+        .card { background: white; padding: 20px; border-radius: 8px; flex: 1; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border-left: 5px solid #3b82f6; }
+        .card h3 { margin: 0; color: #6b7280; font-size: 14px; }
+        .card p { margin: 10px 0 0; font-size: 24px; font-weight: bold; color: #111827; }
+        .grid-2 { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-top: 20px; }
+        .section { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #e5e7eb; }
+        th { background-color: #f9fafb; color: #374151; }
+        .badge-high { color: #dc2626; font-weight: bold; }
+        .badge-low { color: #16a34a; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <div>
+            <h2 style="margin:0;">National Airfare Price Index (APIx)</h2>
+            <small>MoSPI (NSO) & Reserve Bank of India - Live Monitoring</small>
+        </div>
+        <div>
+            <button style="padding: 8px 16px; border: none; background: #3b82f6; color: white; border-radius: 4px; cursor: pointer;">Export NSO Report (CSV)</button>
+        </div>
+    </div>
+
+    <!-- Top Metrics Cards -->
+    <div class="cards-container">
+        <div class="card">
+            <h3>TODAY'S APIx INDEX</h3>
+            <p>128.4 <span style="font-size: 14px; color: #dc2626;">(+2.1%)</span></p>
+        </div>
+        <div class="card" style="border-left-color: #10b981;">
+            <h3>MOST VOLATILE ROUTE</h3>
+            <p>DEL - BOM</p>
+        </div>
+        <div class="card" style="border-left-color: #f59e0b;">
+            <h3>LIVE DATA SOURCES</h3>
+            <p>5 Airlines | 6 OTAs</p>
+        </div>
+    </div>
+<!-- Flight Search -->
+<div class="section" style="margin-top:20px;">
+
+    <h3 style="margin-top:0;">
+        ✈ Find the Best Airfare
+    </h3>
+
+    <p style="color:#6b7280;font-size:14px;">
+        Compare available flight offers for your journey.
+    </p>
+
+    <div style="
+        display:grid;
+        grid-template-columns:1fr 1fr 1fr auto;
+        gap:12px;
+        align-items:end;
+    ">
+
+        <div>
+            <label><b>From</b></label>
+            <input
+                id="fromCity"
+                type="text"
+                placeholder="e.g. Delhi"
+                style="
+                    width:100%;
+                    box-sizing:border-box;
+                    padding:12px;
+                    margin-top:6px;
+                    border:1px solid #d1d5db;
+                    border-radius:6px;
+                "
+            >
+        </div>
+
+        <div>
+            <label><b>To</b></label>
+            <input
+                id="toCity"
+                type="text"
+                placeholder="e.g. Mumbai"
+                style="
+                    width:100%;
+                    box-sizing:border-box;
+                    padding:12px;
+                    margin-top:6px;
+                    border:1px solid #d1d5db;
+                    border-radius:6px;
+                "
+            >
+        </div>
+
+        <div>
+            <label><b>Travel Date</b></label>
+            <input
+                id="travelDate"
+                type="date"
+                style="
+                    width:100%;
+                    box-sizing:border-box;
+                    padding:11px;
+                    margin-top:6px;
+                    border:1px solid #d1d5db;
+                    border-radius:6px;
+                "
+            >
+        </div>
+
+        <button
+            onclick="searchFlights()"
+            style="
+                padding:12px 20px;
+                border:none;
+                background:#2563eb;
+                color:white;
+                border-radius:6px;
+                cursor:pointer;
+                font-weight:bold;
+            "
+        >
+            SEARCH
+        </button>
+
+    </div>
+
+    <!-- Search Results -->
+    <div id="searchResults" style="margin-top:20px;"></div>
+
+</div>
+    <!-- Main Content Area -->
+    <div class="grid-2">
+        <!-- Route Matrix Table -->
+        <div class="section">
+            <h3 style="margin-top:0;">Live Route Monitoring (Top Sector Basket)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Route</th>
+                        <th>Base Fare</th>
+                        <th>Taxes & Fees</th>
+                        <th>Total Fare</th>
+                        <th>24h Trend</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>DEL ➔ BOM</b> (Delhi-Mumbai)</td>
+                        <td>₹4,200</td>
+                        <td>₹1,150</td>
+                        <td><b>₹5,350</b></td>
+                        <td class="badge-high">▲ +4.5%</td>
+                    </tr>
+                    <tr>
+                        <td><b>BLR ➔ DEL</b> (Bangalore-Delhi)</td>
+                        <td>₹3,800</td>
+                        <td>₹950</td>
+                        <td><b>₹4,750</b></td>
+                        <td class="badge-low">▼ -1.2%</td>
+                    </tr>
+                    <tr>
+                        <td><b>DEL ➔ CCU</b> (Delhi-Kolkata)</td>
+                        <td>₹3,100</td>
+                        <td>₹850</td>
+                        <td><b>₹3,950</b></td>
+                        <td class="badge-high">▲ +2.8%</td>
+                    </tr>
+                    <tr>
+                        <td><b>BOM ➔ BLR</b> (Mumbai-Bangalore)</td>
+                        <td>₹2,500</td>
+                        <td>₹700</td>
+                        <td><b>₹3,200</b></td>
+                        <td class="badge-low">▼ -0.5%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Advance Booking Window Heatmap -->
+        <div class="section">
+            <h3 style="margin-top:0;">Lead-Time Price Variance</h3>
+            <p style="font-size: 13px; color: #6b7280;">Average fare dynamic increase based on booking advance days.</p>
+            <ul>
+                <li style="margin-bottom: 12px;"><b>T+1 Day (Same Day/Tomorrow):</b> <span class="badge-high">₹8,500</span></li>
+                <li style="margin-bottom: 12px;"><b>T+7 Days:</b> ₹6,100</li>
+                <li style="margin-bottom: 12px;"><b>T+15 Days:</b> ₹4,800</li>
+                <li style="margin-bottom: 12px;"><b>T+30 Days (Baseline):</b> <span class="badge-low">₹3,950</span></li>
+            </ul>
+        </div>
+    </div>
+     
+<script src="script.js"></script>
+</body>
+</html>
