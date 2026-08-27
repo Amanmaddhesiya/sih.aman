@@ -1,41 +1,214 @@
 // ==========================================
-// FLIGHT SEARCH & PRICE COMPARISON
+// APIx FLIGHT SEARCH ENGINE
+// ==========================================
+
+
+// ==========================================
+// DEMO FLIGHT DATABASE
+// ==========================================
+
+const flightDatabase = {
+
+    "delhi-mumbai": [
+        {
+            airline: "Air India",
+            price: 5120,
+            duration: "2h 15m",
+            stops: "Non-stop"
+        },
+        {
+            airline: "IndiGo",
+            price: 5350,
+            duration: "2h 10m",
+            stops: "Non-stop"
+        },
+        {
+            airline: "Akasa Air",
+            price: 5480,
+            duration: "2h 20m",
+            stops: "Non-stop"
+        },
+        {
+            airline: "SpiceJet",
+            price: 5650,
+            duration: "2h 30m",
+            stops: "Non-stop"
+        }
+    ],
+
+
+    "mumbai-bangalore": [
+        {
+            airline: "Akasa Air",
+            price: 2980,
+            duration: "1h 40m",
+            stops: "Non-stop"
+        },
+        {
+            airline: "IndiGo",
+            price: 3200,
+            duration: "1h 45m",
+            stops: "Non-stop"
+        },
+        {
+            airline: "SpiceJet",
+            price: 3350,
+            duration: "2h 00m",
+            stops: "Non-stop"
+        },
+        {
+            airline: "Air India",
+            price: 3450,
+            duration: "1h 50m",
+            stops: "Non-stop"
+        }
+    ],
+
+
+    "delhi-bangalore": [
+        {
+            airline: "SpiceJet",
+            price: 5700,
+            duration: "3h 00m",
+            stops: "Non-stop"
+        },
+        {
+            airline: "Air India",
+            price: 5850,
+            duration: "2h 45m",
+            stops: "Non-stop"
+        },
+        {
+            airline: "IndiGo",
+            price: 6100,
+            duration: "2h 40m",
+            stops: "Non-stop"
+        },
+        {
+            airline: "Akasa Air",
+            price: 6250,
+            duration: "2h 40m",
+            stops: "Non-stop"
+        }
+    ],
+
+
+    "delhi-kolkata": [
+        {
+            airline: "Akasa Air",
+            price: 3800,
+            duration: "2h 20m",
+            stops: "Non-stop"
+        },
+        {
+            airline: "IndiGo",
+            price: 3950,
+            duration: "2h 15m",
+            stops: "Non-stop"
+        },
+        {
+            airline: "Air India",
+            price: 4100,
+            duration: "2h 20m",
+            stops: "Non-stop"
+        },
+        {
+            airline: "SpiceJet",
+            price: 4250,
+            duration: "2h 30m",
+            stops: "Non-stop"
+        }
+    ],
+
+
+    "bangalore-hyderabad": [
+        {
+            airline: "Akasa Air",
+            price: 2650,
+            duration: "1h 10m",
+            stops: "Non-stop"
+        },
+        {
+            airline: "IndiGo",
+            price: 2800,
+            duration: "1h 10m",
+            stops: "Non-stop"
+        },
+        {
+            airline: "Air India",
+            price: 2950,
+            duration: "1h 15m",
+            stops: "Non-stop"
+        },
+        {
+            airline: "SpiceJet",
+            price: 3100,
+            duration: "1h 20m",
+            stops: "Non-stop"
+        }
+    ],
+
+
+    "chennai-delhi": [
+        {
+            airline: "SpiceJet",
+            price: 6700,
+            duration: "3h 00m",
+            stops: "Non-stop"
+        },
+        {
+            airline: "Air India",
+            price: 6850,
+            duration: "2h 50m",
+            stops: "Non-stop"
+        },
+        {
+            airline: "IndiGo",
+            price: 7200,
+            duration: "2h 45m",
+            stops: "Non-stop"
+        },
+        {
+            airline: "Akasa Air",
+            price: 7500,
+            duration: "2h 50m",
+            stops: "Non-stop"
+        }
+    ]
+
+};
+
+
+// ==========================================
+// SEARCH FLIGHTS
 // ==========================================
 
 function searchFlights() {
 
-    // Get input elements
-    const fromElement = document.getElementById("fromCity");
-    const toElement = document.getElementById("toCity");
-    const dateElement = document.getElementById("travelDate");
-    const results = document.getElementById("searchResults");
+    const from = document
+        .getElementById("from")
+        .value
+        .trim();
 
-    // Safety check
-    if (!fromElement || !toElement || !dateElement || !results) {
-        console.error("Required HTML elements are missing.");
+    const to = document
+        .getElementById("to")
+        .value
+        .trim();
 
-        return;
-    }
+    const date = document
+        .getElementById("date")
+        .value;
 
-    // Get values
-    const from = fromElement.value.trim();
-    const to = toElement.value.trim();
-    const date = dateElement.value;
+    const results = document
+        .getElementById("searchResults");
 
-    // ==========================================
-    // CHECK USER INPUT
-    // ==========================================
+
+    // Check input
 
     if (!from || !to || !date) {
 
         results.innerHTML = `
-            <div style="
-                padding:15px;
-                background:#fee2e2;
-                color:#991b1b;
-                border-radius:8px;
-                margin-top:15px;
-            ">
+            <div class="error-box">
                 ⚠️ Please enter From, To and Travel Date.
             </div>
         `;
@@ -43,224 +216,46 @@ function searchFlights() {
         return;
     }
 
-    // ==========================================
-    // DEMO FLIGHT DATABASE
-    // ==========================================
 
-    const routeDatabase = {
-
-        "delhi-mumbai": [
-            {
-                airline: "IndiGo",
-                price: 5350,
-                duration: "2h 10m",
-                stops: "Non-stop"
-            },
-            {
-                airline: "Air India",
-                price: 5120,
-                duration: "2h 15m",
-                stops: "Non-stop"
-            },
-            {
-                airline: "Akasa Air",
-                price: 5480,
-                duration: "2h 20m",
-                stops: "Non-stop"
-            },
-            {
-                airline: "SpiceJet",
-                price: 5650,
-                duration: "2h 30m",
-                stops: "Non-stop"
-            }
-        ],
-
-        "mumbai-bangalore": [
-            {
-                airline: "IndiGo",
-                price: 3200,
-                duration: "1h 45m",
-                stops: "Non-stop"
-            },
-            {
-                airline: "Air India",
-                price: 3450,
-                duration: "1h 50m",
-                stops: "Non-stop"
-            },
-            {
-                airline: "Akasa Air",
-                price: 2980,
-                duration: "1h 40m",
-                stops: "Non-stop"
-            },
-            {
-                airline: "SpiceJet",
-                price: 3350,
-                duration: "2h 00m",
-                stops: "Non-stop"
-            }
-        ],
-
-        "delhi-bangalore": [
-            {
-                airline: "IndiGo",
-                price: 6100,
-                duration: "2h 40m",
-                stops: "Non-stop"
-            },
-            {
-                airline: "Air India",
-                price: 5850,
-                duration: "2h 45m",
-                stops: "Non-stop"
-            },
-            {
-                airline: "Akasa Air",
-                price: 6250,
-                duration: "2h 40m",
-                stops: "Non-stop"
-            },
-            {
-                airline: "SpiceJet",
-                price: 5700,
-                duration: "3h 00m",
-                stops: "Non-stop"
-            }
-        ],
-
-        "delhi-kolkata": [
-            {
-                airline: "IndiGo",
-                price: 3950,
-                duration: "2h 15m",
-                stops: "Non-stop"
-            },
-            {
-                airline: "Air India",
-                price: 4100,
-                duration: "2h 20m",
-                stops: "Non-stop"
-            },
-            {
-                airline: "Akasa Air",
-                price: 3800,
-                duration: "2h 20m",
-                stops: "Non-stop"
-            },
-            {
-                airline: "SpiceJet",
-                price: 4250,
-                duration: "2h 30m",
-                stops: "Non-stop"
-            }
-        ],
-
-        "bangalore-hyderabad": [
-            {
-                airline: "IndiGo",
-                price: 2800,
-                duration: "1h 10m",
-                stops: "Non-stop"
-            },
-            {
-                airline: "Air India",
-                price: 2950,
-                duration: "1h 15m",
-                stops: "Non-stop"
-            },
-            {
-                airline: "Akasa Air",
-                price: 2650,
-                duration: "1h 10m",
-                stops: "Non-stop"
-            },
-            {
-                airline: "SpiceJet",
-                price: 3100,
-                duration: "1h 20m",
-                stops: "Non-stop"
-            }
-        ],
-
-        "chennai-delhi": [
-            {
-                airline: "IndiGo",
-                price: 7200,
-                duration: "2h 45m",
-                stops: "Non-stop"
-            },
-            {
-                airline: "Air India",
-                price: 6850,
-                duration: "2h 50m",
-                stops: "Non-stop"
-            },
-            {
-                airline: "Akasa Air",
-                price: 7500,
-                duration: "2h 50m",
-                stops: "Non-stop"
-            },
-            {
-                airline: "SpiceJet",
-                price: 6700,
-                duration: "3h 00m",
-                stops: "Non-stop"
-            }
-        ]
-    };
-
-    // ==========================================
-    // CREATE ROUTE KEY
-    // ==========================================
+    // Create route key
 
     const routeKey =
-        from.toLowerCase().trim().replace(/\s+/g, "-") +
+        from.toLowerCase().replace(/\s+/g, "-") +
         "-" +
-        to.toLowerCase().trim().replace(/\s+/g, "-");
+        to.toLowerCase().replace(/\s+/g, "-");
 
-    console.log("Route Key:", routeKey);
 
-    // ==========================================
-    // FIND OFFERS
-    // ==========================================
+    console.log("Searching:", routeKey);
 
-    const offers = routeDatabase[routeKey];
 
-    // ==========================================
-    // ROUTE NOT AVAILABLE
-    // ==========================================
+    // Find flights
 
-    if (!offers) {
+    const flights = flightDatabase[routeKey];
+
+
+    // Route unavailable
+
+    if (!flights) {
 
         results.innerHTML = `
-            <div style="
-                padding:18px;
-                background:#fff7ed;
-                color:#9a3412;
-                border-radius:8px;
-                margin-top:15px;
-            ">
+            <div class="no-route">
 
-                <b>✈️ Route not available in demo database</b>
+                <h5>
+                    ✈️ Route not available in demo database
+                </h5>
 
-                <p style="margin:8px 0 0;">
-                    Try one of these routes:
+                <p>
+                    Try:
                 </p>
 
-                <p style="
-                    margin:8px 0 0;
-                    font-weight:bold;
-                ">
+                <strong>
                     Delhi → Mumbai<br>
                     Mumbai → Bangalore<br>
                     Delhi → Bangalore<br>
                     Delhi → Kolkata<br>
                     Bangalore → Hyderabad<br>
                     Chennai → Delhi
-                </p>
+                </strong>
 
             </div>
         `;
@@ -268,100 +263,77 @@ function searchFlights() {
         return;
     }
 
-    // ==========================================
-    // FIND CHEAPEST FLIGHT
-    // ==========================================
 
-    const cheapest = offers.reduce(
-        (min, flight) => {
-            return flight.price < min.price ? flight : min;
-        },
-        offers[0]
-    );
+    // Sort cheapest first
 
-    // ==========================================
-    // SORT OFFERS
-    // ==========================================
-
-    const sortedOffers = [...offers].sort(
+    const sortedFlights = [...flights].sort(
         (a, b) => a.price - b.price
     );
 
-    // ==========================================
-    // DISPLAY RESULTS
-    // ==========================================
+
+    const cheapest = sortedFlights[0];
+
+
+    // Display results
 
     results.innerHTML = `
 
-        <h3 style="margin-top:20px;">
-            ✈️ Available Flight Offers
-        </h3>
+        <div class="results-header">
 
-        <p style="
-            color:#6b7280;
-            margin-bottom:15px;
-        ">
-            ${from.toUpperCase()}
-            →
-            ${to.toUpperCase()}
-            |
-            ${date}
-        </p>
+            <h4>
+                ✈️ Available Flight Offers
+            </h4>
 
-        <div style="
-            display:grid;
-            gap:10px;
-        ">
+            <p>
+                ${from.toUpperCase()}
+                →
+                ${to.toUpperCase()}
+                |
+                ${date}
+            </p>
 
-            ${sortedOffers.map(flight => `
+        </div>
 
-                <div style="
-                    display:flex;
-                    justify-content:space-between;
-                    align-items:center;
-                    padding:16px;
-                    border:1px solid #e5e7eb;
-                    border-radius:10px;
-                    background:white;
-                ">
+
+        <div class="flight-results">
+
+            ${sortedFlights.map((flight, index) => `
+
+                <div class="flight-card">
 
                     <div>
 
-                        <b style="font-size:17px;">
+                        <div class="airline">
                             ${flight.airline}
-                        </b>
+                        </div>
 
-                        <div style="
-                            color:#6b7280;
-                            margin-top:5px;
-                            font-size:13px;
-                        ">
+                        <div class="flight-details">
+
                             ${flight.stops}
                             •
                             ${flight.duration}
+
                         </div>
 
                     </div>
 
-                    <div style="text-align:right;">
 
-                        <b style="font-size:19px;">
+                    <div class="flight-price">
+
+                        <strong>
                             ₹${flight.price.toLocaleString("en-IN")}
-                        </b>
+                        </strong>
 
                         ${
-                            flight.airline === cheapest.airline
-                                ? `
-                                    <div style="
-                                        color:#16a34a;
-                                        font-size:12px;
-                                        font-weight:bold;
-                                        margin-top:4px;
-                                    ">
-                                        ⭐ BEST PRICE
-                                    </div>
-                                `
-                                : ""
+                            index === 0
+                            ?
+                            `
+                            <div class="best-badge">
+                                ⭐ BEST PRICE
+                            </div>
+                            `
+                            :
+                            ""
                         }
 
                     </div>
@@ -372,65 +344,240 @@ function searchFlights() {
 
         </div>
 
-        <!-- BEST PRICE BOX -->
 
-        <div style="
-            margin-top:18px;
-            padding:18px;
-            background:#ecfdf5;
-            border-left:5px solid #16a34a;
-            border-radius:8px;
-        ">
+        <div class="best-price">
 
-            <div style="
-                font-size:15px;
-                font-weight:bold;
-                color:#166534;
-            ">
-                🏆 Best Price Recommendation
+            <div>
+                🏆 <strong>Best Price Recommendation</strong>
             </div>
 
-            <div style="
-                margin-top:7px;
-                font-size:20px;
-                font-weight:bold;
-            ">
+            <div class="best-price-value">
+
                 ${cheapest.airline}
                 —
                 ₹${cheapest.price.toLocaleString("en-IN")}
+
             </div>
 
-            <div style="
-                margin-top:5px;
-                font-size:13px;
-                color:#166534;
-            ">
-                Lowest available price in our comparison.
-            </div>
+            <small>
+                Lowest price available in our demo database.
+            </small>
 
         </div>
 
-        <!-- DEMO NOTICE -->
 
-        <p style="
-            margin-top:12px;
-            font-size:12px;
-            color:#6b7280;
-        ">
-            * Prototype demonstration data.
-            Live airline/OTA prices are not connected yet.
-        </p>
+        <div class="demo-notice">
+
+            ℹ️ Demo data only — live airline prices are not connected yet.
+
+        </div>
+
     `;
 
-    // ==========================================
-    // CONSOLE LOG
-    // ==========================================
+}
 
-    console.log("Flight Search:");
-    console.log("From:", from);
-    console.log("To:", to);
-    console.log("Date:", date);
-    console.log("Route:", routeKey);
-    console.log("Offers:", offers);
-    console.log("Best Price:", cheapest);
+
+// ==========================================
+// PRICE TREND CHART
+// ==========================================
+
+const trendCanvas =
+    document.getElementById("trendChart");
+
+
+if (trendCanvas) {
+
+    new Chart(trendCanvas.getContext("2d"), {
+
+        type: "line",
+
+        data: {
+
+            labels: [
+                "Day 1",
+                "Day 2",
+                "Day 3",
+                "Day 4",
+                "Day 5",
+                "Day 6",
+                "Day 7"
+            ],
+
+            datasets: [
+
+                {
+                    label: "DEL-BOM",
+
+                    data: [
+                        5100,
+                        5150,
+                        5200,
+                        5300,
+                        5280,
+                        5350,
+                        5400
+                    ],
+
+                    borderColor: "#1e40af",
+
+                    backgroundColor:
+                        "rgba(30,64,175,0.1)",
+
+                    tension: 0.4,
+
+                    fill: true
+                },
+
+
+                {
+                    label: "BLR-DEL",
+
+                    data: [
+                        4900,
+                        4850,
+                        4800,
+                        4750,
+                        4700,
+                        4750,
+                        4800
+                    ],
+
+                    borderColor: "#f59e0b",
+
+                    backgroundColor:
+                        "rgba(245,158,11,0.1)",
+
+                    tension: 0.4,
+
+                    fill: true
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false
+
+        }
+
+    });
+
+}
+
+
+// ==========================================
+// LEAD TIME CHART
+// ==========================================
+
+const leadCanvas =
+    document.getElementById("leadTimeChart");
+
+
+if (leadCanvas) {
+
+    new Chart(leadCanvas.getContext("2d"), {
+
+        type: "bar",
+
+        data: {
+
+            labels: [
+                "Same Day",
+                "T+7",
+                "T+15",
+                "T+30"
+            ],
+
+            datasets: [
+
+                {
+                    label: "Average Fare (₹)",
+
+                    data: [
+                        8500,
+                        6100,
+                        4800,
+                        3950
+                    ],
+
+                    backgroundColor: [
+                        "#ef4444",
+                        "#f59e0b",
+                        "#3b82f6",
+                        "#10b981"
+                    ],
+
+                    borderRadius: 8
+
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            plugins: {
+
+                legend: {
+                    display: false
+                }
+
+            }
+
+        }
+
+    });
+
+}
+
+
+// ==========================================
+// CSV REPORT
+// ==========================================
+
+function downloadReport() {
+
+    const csv = `
+Route,Base Fare,Taxes & Fees,Total Fare,24h Trend
+DEL-BOM,4200,1150,5350,+4.5%
+BLR-DEL,3800,950,4750,-1.2%
+DEL-CCU,3100,850,3950,+2.8%
+BOM-BLR,2500,700,3200,-0.5%
+`.trim();
+
+
+    const blob = new Blob(
+        [csv],
+        { type: "text/csv" }
+    );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const link =
+        document.createElement("a");
+
+
+    link.href = url;
+
+    link.download =
+        "APIx-airfare-report.csv";
+
+
+    link.click();
+
+
+    URL.revokeObjectURL(url);
+
 }
