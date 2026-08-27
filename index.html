@@ -1,57 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Airfare Price Index (APIx)</title>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap -->
-    <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
+    <title>Airfare Price Index | APIx</title>
 
-    <!-- Your CSS -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Chart.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
-<!-- ==========================================
-     NAVBAR
-========================================== -->
+    <!-- NAVBAR -->
 
-<nav class="navbar navbar-dark sticky-top">
-    <div class="container">
-        <span class="navbar-brand mb-0 h1">
-            ✈️ National Airfare Price Index (APIx)
-        </span>
+    <nav class="navbar">
 
-        <small class="text-light">
-            Airfare Monitoring Dashboard
-        </small>
-    </div>
-</nav>
+        <div class="nav-title">
+            ✈️ National Airfare Price Index
+        </div>
+
+        <div class="nav-subtitle">
+            APIx • Airfare Monitoring Dashboard
+        </div>
+
+    </nav>
 
 
-<!-- ==========================================
-     MAIN
-========================================== -->
+    <main class="container-main">
 
-<div class="container container-main">
 
-    <!-- ======================================
-         STAT CARDS
-    ======================================= -->
+        <!-- ============================= -->
+        <!-- STAT CARDS -->
+        <!-- ============================= -->
 
-    <div class="row mb-4">
+        <section class="stats">
 
-        <div class="col-md-4 mb-3">
-            <div class="stat-card">
+            <div class="stat-card blue">
+
                 <div class="stat-label">
                     TODAY'S APIx INDEX
                 </div>
@@ -60,15 +50,14 @@
                     128.4
                 </div>
 
-                <div class="trend-up">
+                <div>
                     ▲ +2.1% (24h)
                 </div>
+
             </div>
-        </div>
 
 
-        <div class="col-md-4 mb-3">
-            <div class="stat-card volatile-card">
+            <div class="stat-card orange">
 
                 <div class="stat-label">
                     MOST VOLATILE ROUTE
@@ -78,16 +67,14 @@
                     DEL ↔ BOM
                 </div>
 
-                <div class="trend-up">
+                <div>
                     Volatility: ±8.2%
                 </div>
 
             </div>
-        </div>
 
 
-        <div class="col-md-4 mb-3">
-            <div class="stat-card live-card">
+            <div class="stat-card green">
 
                 <div class="stat-label">
                     DATA SOURCES
@@ -102,250 +89,327 @@
                 </div>
 
             </div>
-        </div>
 
-    </div>
+        </section>
 
 
-    <!-- ======================================
-         FLIGHT SEARCH
-    ======================================= -->
 
-    <div class="search-section">
+        <!-- ============================= -->
+        <!-- SEARCH -->
+        <!-- ============================= -->
 
-        <h4>
-            ✈️ Find the Best Airfare
-        </h4>
+        <section class="search-section">
 
-        <div class="row g-3">
+            <h2>
+                ✈️ Find the Best Airfare
+            </h2>
 
-            <div class="col-md-3">
-
-                <label class="form-label">
-                    From
-                </label>
-
-                <input
-                    type="text"
-                    class="form-control"
-                    id="from"
-                    placeholder="Delhi, Mumbai..."
-                >
-
-            </div>
-
-
-            <div class="col-md-3">
-
-                <label class="form-label">
-                    To
-                </label>
-
-                <input
-                    type="text"
-                    class="form-control"
-                    id="to"
-                    placeholder="Mumbai, Bangalore..."
-                >
-
-            </div>
-
-
-            <div class="col-md-3">
-
-                <label class="form-label">
-                    Travel Date
-                </label>
-
-                <input
-                    type="date"
-                    class="form-control"
-                    id="date"
-                >
-
-            </div>
-
-
-            <div class="col-md-3 d-flex align-items-end">
-
-                <button
-                    class="btn btn-search w-100"
-                    onclick="searchFlights()"
-                >
-                    🔍 SEARCH FLIGHTS
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- SEARCH RESULTS WILL APPEAR HERE -->
-
-        <div id="searchResults"></div>
-
-    </div>
-
-
-    <!-- ======================================
-         PRICE TREND
-    ======================================= -->
-
-    <div class="card mb-4">
-
-        <div class="card-body">
-
-            <h5 class="card-title">
-                📊 Price Trend — Last 7 Days
-            </h5>
-
-            <div class="chart-container">
-                <canvas id="trendChart"></canvas>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- ======================================
-         ROUTE MONITORING
-    ======================================= -->
-
-    <h3 class="section-title">
-        🛫 Route Monitoring
-    </h3>
-
-
-    <div class="card mb-4">
-
-        <div class="table-responsive">
-
-            <table class="table">
-
-                <thead>
-
-                    <tr>
-                        <th>Route</th>
-                        <th>Base Fare</th>
-                        <th>Taxes & Fees</th>
-                        <th>Total Fare</th>
-                        <th>24h Trend</th>
-                        <th>vs Avg</th>
-                    </tr>
-
-                </thead>
-
-
-                <tbody>
-
-                    <tr>
-                        <td><strong>DEL ➔ BOM</strong></td>
-                        <td>₹4,200</td>
-                        <td>₹1,150</td>
-                        <td><strong>₹5,350</strong></td>
-                        <td class="trend-up">▲ +4.5%</td>
-                        <td class="trend-up">+12%</td>
-                    </tr>
-
-
-                    <tr>
-                        <td><strong>BLR ➔ DEL</strong></td>
-                        <td>₹3,800</td>
-                        <td>₹950</td>
-                        <td><strong>₹4,750</strong></td>
-                        <td class="trend-down">▼ -1.2%</td>
-                        <td class="trend-down">-3%</td>
-                    </tr>
-
-
-                    <tr>
-                        <td><strong>DEL ➔ CCU</strong></td>
-                        <td>₹3,100</td>
-                        <td>₹850</td>
-                        <td><strong>₹3,950</strong></td>
-                        <td class="trend-up">▲ +2.8%</td>
-                        <td class="trend-up">+8%</td>
-                    </tr>
-
-
-                    <tr>
-                        <td><strong>BOM ➔ BLR</strong></td>
-                        <td>₹2,500</td>
-                        <td>₹700</td>
-                        <td><strong>₹3,200</strong></td>
-                        <td class="trend-down">▼ -0.5%</td>
-                        <td class="trend-down">-5%</td>
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-
-    <!-- ======================================
-         LEAD TIME ANALYSIS
-    ======================================= -->
-
-    <h3 class="section-title">
-        📈 Lead-Time Price Variance Analysis
-    </h3>
-
-
-    <div class="card mb-4">
-
-        <div class="card-body">
-
-            <p class="text-muted">
-                Average fare variation based on booking advance days.
+            <p class="search-description">
+                Compare available airfare offers for your route.
             </p>
 
-            <div class="chart-container">
-                <canvas id="leadTimeChart"></canvas>
+
+            <div class="search-grid">
+
+                <div class="form-group">
+
+                    <label for="from">
+                        From
+                    </label>
+
+                    <input
+                        type="text"
+                        id="from"
+                        class="form-control"
+                        placeholder="Delhi, Mumbai..."
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="to">
+                        To
+                    </label>
+
+                    <input
+                        type="text"
+                        id="to"
+                        class="form-control"
+                        placeholder="Mumbai, Bangalore..."
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="date">
+                        Travel Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="date"
+                        class="form-control"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <button
+                        id="searchButton"
+                        class="btn-search"
+                    >
+                        🔍 SEARCH FLIGHTS
+                    </button>
+
+                </div>
+
             </div>
 
-        </div>
 
-    </div>
+            <!-- RESULTS WILL APPEAR HERE -->
+
+            <div id="searchResults"></div>
+
+        </section>
 
 
-    <!-- ======================================
-         FOOTER
-    ======================================= -->
 
-    <div class="card mb-4">
+        <!-- ============================= -->
+        <!-- PRICE TREND -->
+        <!-- ============================= -->
 
-        <div class="card-body text-center">
+        <section class="card">
 
-            <h5>
+            <h3>
+                📊 Price Trend — Last 7 Days
+            </h3>
+
+            <div class="chart-container">
+
+                <canvas id="trendChart"></canvas>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ============================= -->
+        <!-- ROUTE MONITORING -->
+        <!-- ============================= -->
+
+        <h2 class="section-title">
+            🛫 Route Monitoring
+        </h2>
+
+
+        <section class="card">
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Route</th>
+
+                            <th>Base Fare</th>
+
+                            <th>Taxes & Fees</th>
+
+                            <th>Total Fare</th>
+
+                            <th>24h Trend</th>
+
+                            <th>vs Avg</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                <strong>DEL ➔ BOM</strong>
+                            </td>
+
+                            <td>₹4,200</td>
+
+                            <td>₹1,150</td>
+
+                            <td>
+                                <strong>₹5,350</strong>
+                            </td>
+
+                            <td class="positive">
+                                ▲ +4.5%
+                            </td>
+
+                            <td class="positive">
+                                +12%
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                <strong>BLR ➔ DEL</strong>
+                            </td>
+
+                            <td>₹3,800</td>
+
+                            <td>₹950</td>
+
+                            <td>
+                                <strong>₹4,750</strong>
+                            </td>
+
+                            <td class="negative">
+                                ▼ -1.2%
+                            </td>
+
+                            <td class="negative">
+                                -3%
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                <strong>DEL ➔ CCU</strong>
+                            </td>
+
+                            <td>₹3,100</td>
+
+                            <td>₹850</td>
+
+                            <td>
+                                <strong>₹3,950</strong>
+                            </td>
+
+                            <td class="positive">
+                                ▲ +2.8%
+                            </td>
+
+                            <td class="positive">
+                                +8%
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                <strong>BOM ➔ BLR</strong>
+                            </td>
+
+                            <td>₹2,500</td>
+
+                            <td>₹700</td>
+
+                            <td>
+                                <strong>₹3,200</strong>
+                            </td>
+
+                            <td class="negative">
+                                ▼ -0.5%
+                            </td>
+
+                            <td class="negative">
+                                -5%
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ============================= -->
+        <!-- LEAD TIME -->
+        <!-- ============================= -->
+
+        <h2 class="section-title">
+            📈 Lead-Time Price Variance
+        </h2>
+
+
+        <section class="card">
+
+            <p class="description">
+                Average fare variation based on booking
+                advance days.
+            </p>
+
+
+            <div class="chart-container">
+
+                <canvas id="leadTimeChart"></canvas>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ============================= -->
+        <!-- EXPORT -->
+        <!-- ============================= -->
+
+        <section class="export-card">
+
+            <h3>
                 📥 Export Airfare Report
-            </h5>
+            </h3>
+
+            <p>
+                Download the current route data as CSV.
+            </p>
 
             <button
-                class="btn btn-search"
-                onclick="downloadReport()"
+                id="downloadCSV"
+                class="btn-search"
             >
                 ⬇ Download CSV Report
             </button>
 
-        </div>
-
-    </div>
-
-</div>
+        </section>
 
 
-<!-- Bootstrap JS -->
+    </main>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
-<!-- Your JavaScript -->
+    <footer>
 
-<script src="script.js"></script>
+        APIx Prototype • Airfare Price Monitoring Dashboard
+
+    </footer>
+
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
