@@ -1,217 +1,222 @@
-/* ==========================================
-   FLIGHT PRICE COMPARATOR - MAIN CSS
-   ========================================== */
-
-/* ---------- RESET ---------- */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
+:root {
+    --primary: #1e40af;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f5f7fb;
-    color: #111827;
-    line-height: 1.6;
+    background: linear-gradient(
+        135deg,
+        #667eea 0%,
+        #764ba2 100%
+    );
+
+    min-height: 100vh;
+
+    font-family:
+        "Segoe UI",
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
 }
 
 
-/* ---------- MAIN CONTAINER ---------- */
+/* NAVBAR */
 
-.container {
-    width: 92%;
-    max-width: 1100px;
-    margin: 0 auto;
+.navbar {
+    background: rgba(30, 64, 175, 0.95) !important;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 
-/* ---------- HEADER ---------- */
+/* MAIN */
 
-header {
-    background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
-    padding: 18px 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-header .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: 800;
-    color: #2563eb;
+.container-main {
+    margin-top: 30px;
+    margin-bottom: 50px;
 }
 
 
-/* ---------- HERO SECTION ---------- */
+/* STAT CARDS */
 
-.hero {
-    padding: 55px 0 35px;
-    text-align: center;
-}
+.stat-card {
+    background:
+        linear-gradient(
+            135deg,
+            #1e40af,
+            #3b82f6
+        );
 
-.hero h1 {
-    font-size: 42px;
-    line-height: 1.15;
-    margin-bottom: 15px;
-    color: #111827;
-}
-
-.hero p {
-    color: #6b7280;
-    font-size: 17px;
-    max-width: 650px;
-    margin: 0 auto;
-}
-
-
-/* ---------- SEARCH CARD ---------- */
-
-.search-card {
-    background: #ffffff;
-    width: 92%;
-    max-width: 1000px;
-    margin: 10px auto 35px;
-    padding: 28px;
-    border-radius: 18px;
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5e7eb;
-}
-
-
-/* ---------- SEARCH FORM ---------- */
-
-.search-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr auto;
-    gap: 15px;
-    align-items: end;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-}
-
-.form-group label {
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 7px;
-    color: #374151;
-}
-
-
-/* ---------- INPUTS ---------- */
-
-input,
-select {
-    width: 100%;
-    padding: 13px 14px;
-    border: 1px solid #d1d5db;
-    border-radius: 9px;
-    background: #ffffff;
-    color: #111827;
-    font-size: 15px;
-    outline: none;
-    transition: 0.2s ease;
-}
-
-input:focus,
-select:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
-}
-
-
-/* ---------- SEARCH BUTTON ---------- */
-
-button,
-.search-btn {
-    border: none;
-    padding: 13px 22px;
-    border-radius: 9px;
-    background: #2563eb;
     color: white;
-    font-size: 15px;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    text-align: center;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.volatile-card {
+    background:
+        linear-gradient(
+            135deg,
+            #f59e0b,
+            #fbbf24
+        );
+}
+
+.live-card {
+    background:
+        linear-gradient(
+            135deg,
+            #10b981,
+            #34d399
+        );
+}
+
+.stat-value {
+    font-size: 2.5rem;
+
     font-weight: 700;
-    cursor: pointer;
-    transition: 0.2s ease;
+
+    margin: 10px 0;
 }
 
-button:hover,
-.search-btn:hover {
-    background: #1d4ed8;
-    transform: translateY(-1px);
+.stat-label {
+    font-size: 0.95rem;
+
+    opacity: 0.9;
 }
 
-button:active,
-.search-btn:active {
-    transform: translateY(0);
+.route-value {
+    font-size: 1.8rem;
 }
 
 
-/* ---------- RESULTS ---------- */
+/* SEARCH */
+
+.search-section {
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.15);
+
+    margin-bottom: 30px;
+}
+
+.search-section h4 {
+    color: var(--primary);
+
+    margin-bottom: 20px;
+
+    font-weight: 700;
+}
+
+
+/* BUTTON */
+
+.btn-search {
+    background:
+        linear-gradient(
+            135deg,
+            #1e40af,
+            #3b82f6
+        );
+
+    border: none;
+
+    padding: 12px 20px;
+
+    font-weight: 600;
+
+    border-radius: 8px;
+
+    color: white;
+
+    transition: 0.2s;
+}
+
+.btn-search:hover {
+    transform: scale(1.03);
+
+    color: white;
+}
+
+
+/* RESULTS */
 
 #searchResults {
-    width: 92%;
-    max-width: 1000px;
-    margin: 0 auto 50px;
+    margin-top: 25px;
 }
 
-#searchResults h3 {
-    color: #111827;
+.results-header {
+    margin-bottom: 15px;
+}
+
+.results-header h4 {
+    margin-bottom: 5px;
+}
+
+.results-header p {
+    color: #6b7280;
+
+    margin-bottom: 0;
 }
 
 
-/* ---------- FLIGHT CARD ---------- */
+/* FLIGHT CARD */
 
 .flight-card {
-    background: #ffffff;
+    background: white;
+
     border: 1px solid #e5e7eb;
+
     border-radius: 12px;
+
     padding: 18px;
-    margin-bottom: 12px;
+
+    margin-bottom: 10px;
+
     display: flex;
-    align-items: center;
+
     justify-content: space-between;
-    transition: 0.2s ease;
+
+    align-items: center;
+
+    transition: 0.2s;
 }
 
 .flight-card:hover {
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
     transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.08);
 }
-
-
-/* ---------- AIRLINE ---------- */
 
 .airline {
     font-size: 17px;
+
     font-weight: 700;
-    color: #111827;
 }
 
 .flight-details {
-    margin-top: 5px;
     color: #6b7280;
+
     font-size: 13px;
+
+    margin-top: 5px;
 }
-
-
-/* ---------- PRICE ---------- */
 
 .flight-price {
     text-align: right;
@@ -219,145 +224,198 @@ button:active,
 
 .flight-price strong {
     font-size: 20px;
-    color: #111827;
+}
+
+.best-badge {
+    color: #16a34a;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    margin-top: 4px;
 }
 
 
-/* ---------- BEST PRICE ---------- */
+/* BEST PRICE */
 
 .best-price {
-    margin-top: 20px;
-    padding: 20px;
+    margin-top: 18px;
+
+    padding: 18px;
+
     background: #ecfdf5;
+
     border-left: 5px solid #16a34a;
-    border-radius: 10px;
-}
 
-.best-price h3 {
+    border-radius: 8px;
+
     color: #166534;
-    margin-bottom: 5px;
 }
 
-
-/* ---------- FEATURES ---------- */
-
-.features {
-    width: 92%;
-    max-width: 1000px;
-    margin: 40px auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.feature-card {
-    background: white;
-    padding: 25px;
-    border-radius: 14px;
-    border: 1px solid #e5e7eb;
-    text-align: center;
-}
-
-.feature-card h3 {
-    margin-bottom: 8px;
+.best-price-value {
     color: #111827;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    margin-top: 6px;
 }
 
-.feature-card p {
+
+/* NOTICE */
+
+.demo-notice {
+    margin-top: 10px;
+
     color: #6b7280;
-    font-size: 14px;
+
+    font-size: 12px;
 }
 
 
-/* ---------- FOOTER ---------- */
+/* ERROR */
 
-footer {
-    margin-top: 50px;
-    padding: 25px;
-    background: #111827;
-    color: #d1d5db;
-    text-align: center;
-    font-size: 14px;
+.error-box {
+    margin-top: 20px;
+
+    padding: 15px;
+
+    background: #fee2e2;
+
+    color: #991b1b;
+
+    border-radius: 8px;
 }
 
 
-/* ==========================================
-   MOBILE RESPONSIVE
-   ========================================== */
+/* NO ROUTE */
 
-@media (max-width: 800px) {
+.no-route {
+    margin-top: 20px;
 
-    .hero {
-        padding: 40px 0 25px;
+    padding: 18px;
+
+    background: #fff7ed;
+
+    color: #9a3412;
+
+    border-radius: 8px;
+}
+
+
+/* CARDS */
+
+.card {
+    border: none;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.15);
+
+    overflow: hidden;
+}
+
+
+/* TABLE */
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead {
+    background:
+        linear-gradient(
+            135deg,
+            #1e40af,
+            #3b82f6
+        );
+
+    color: white;
+}
+
+.table tbody tr:hover {
+    background: #f3f4f6;
+}
+
+
+/* TRENDS */
+
+.trend-up {
+    color: #16a34a;
+
+    font-weight: 600;
+}
+
+.trend-down {
+    color: #dc2626;
+
+    font-weight: 600;
+}
+
+
+/* SECTION */
+
+.section-title {
+    color: #ffffff;
+
+    margin-top: 40px;
+
+    margin-bottom: 20px;
+
+    padding-bottom: 12px;
+
+    border-bottom: 3px solid white;
+}
+
+
+/* CHART */
+
+.chart-container {
+    position: relative;
+
+    height: 400px;
+
+    margin-bottom: 20px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .stat-value {
+        font-size: 1.8rem;
     }
 
-    .hero h1 {
-        font-size: 32px;
+    .navbar small {
+        display: none;
     }
 
-    .hero p {
-        font-size: 15px;
-    }
-
-    .search-card {
+    .search-section {
         padding: 20px;
-    }
-
-    .search-form {
-        grid-template-columns: 1fr;
-    }
-
-    button,
-    .search-btn {
-        width: 100%;
-    }
-
-    .features {
-        grid-template-columns: 1fr;
     }
 
     .flight-card {
         flex-direction: column;
+
         align-items: flex-start;
-        gap: 15px;
+
+        gap: 12px;
     }
 
     .flight-price {
-        width: 100%;
         text-align: left;
     }
-}
 
-
-/* ==========================================
-   SMALL MOBILE
-   ========================================== */
-
-@media (max-width: 480px) {
-
-    .container {
-        width: 94%;
+    .chart-container {
+        height: 300px;
     }
 
-    .hero h1 {
-        font-size: 27px;
+    .table {
+        font-size: 13px;
     }
 
-    .hero p {
-        font-size: 14px;
-    }
-
-    .search-card {
-        width: 94%;
-        padding: 16px;
-        border-radius: 14px;
-    }
-
-    #searchResults {
-        width: 94%;
-    }
-
-    .feature-card {
-        padding: 20px;
-    }
 }
