@@ -1,1 +1,363 @@
+/* ==========================================
+   FLIGHT PRICE COMPARATOR - MAIN CSS
+   ========================================== */
 
+/* ---------- RESET ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #111827;
+    line-height: 1.6;
+}
+
+
+/* ---------- MAIN CONTAINER ---------- */
+
+.container {
+    width: 92%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+/* ---------- HEADER ---------- */
+
+header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 18px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    color: #2563eb;
+}
+
+
+/* ---------- HERO SECTION ---------- */
+
+.hero {
+    padding: 55px 0 35px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 42px;
+    line-height: 1.15;
+    margin-bottom: 15px;
+    color: #111827;
+}
+
+.hero p {
+    color: #6b7280;
+    font-size: 17px;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+
+/* ---------- SEARCH CARD ---------- */
+
+.search-card {
+    background: #ffffff;
+    width: 92%;
+    max-width: 1000px;
+    margin: 10px auto 35px;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e7eb;
+}
+
+
+/* ---------- SEARCH FORM ---------- */
+
+.search-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 15px;
+    align-items: end;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 7px;
+    color: #374151;
+}
+
+
+/* ---------- INPUTS ---------- */
+
+input,
+select {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #111827;
+    font-size: 15px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* ---------- SEARCH BUTTON ---------- */
+
+button,
+.search-btn {
+    border: none;
+    padding: 13px 22px;
+    border-radius: 9px;
+    background: #2563eb;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover,
+.search-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+button:active,
+.search-btn:active {
+    transform: translateY(0);
+}
+
+
+/* ---------- RESULTS ---------- */
+
+#searchResults {
+    width: 92%;
+    max-width: 1000px;
+    margin: 0 auto 50px;
+}
+
+#searchResults h3 {
+    color: #111827;
+}
+
+
+/* ---------- FLIGHT CARD ---------- */
+
+.flight-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.2s ease;
+}
+
+.flight-card:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+    transform: translateY(-2px);
+}
+
+
+/* ---------- AIRLINE ---------- */
+
+.airline {
+    font-size: 17px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.flight-details {
+    margin-top: 5px;
+    color: #6b7280;
+    font-size: 13px;
+}
+
+
+/* ---------- PRICE ---------- */
+
+.flight-price {
+    text-align: right;
+}
+
+.flight-price strong {
+    font-size: 20px;
+    color: #111827;
+}
+
+
+/* ---------- BEST PRICE ---------- */
+
+.best-price {
+    margin-top: 20px;
+    padding: 20px;
+    background: #ecfdf5;
+    border-left: 5px solid #16a34a;
+    border-radius: 10px;
+}
+
+.best-price h3 {
+    color: #166534;
+    margin-bottom: 5px;
+}
+
+
+/* ---------- FEATURES ---------- */
+
+.features {
+    width: 92%;
+    max-width: 1000px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.feature-card {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    border: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+.feature-card h3 {
+    margin-bottom: 8px;
+    color: #111827;
+}
+
+.feature-card p {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+/* ---------- FOOTER ---------- */
+
+footer {
+    margin-top: 50px;
+    padding: 25px;
+    background: #111827;
+    color: #d1d5db;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+/* ==========================================
+   MOBILE RESPONSIVE
+   ========================================== */
+
+@media (max-width: 800px) {
+
+    .hero {
+        padding: 40px 0 25px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .search-card {
+        padding: 20px;
+    }
+
+    .search-form {
+        grid-template-columns: 1fr;
+    }
+
+    button,
+    .search-btn {
+        width: 100%;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .flight-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .flight-price {
+        width: 100%;
+        text-align: left;
+    }
+}
+
+
+/* ==========================================
+   SMALL MOBILE
+   ========================================== */
+
+@media (max-width: 480px) {
+
+    .container {
+        width: 94%;
+    }
+
+    .hero h1 {
+        font-size: 27px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .search-card {
+        width: 94%;
+        padding: 16px;
+        border-radius: 14px;
+    }
+
+    #searchResults {
+        width: 94%;
+    }
+
+    .feature-card {
+        padding: 20px;
+    }
+}
